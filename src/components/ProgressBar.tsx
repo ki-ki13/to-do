@@ -65,7 +65,7 @@ export default function ProgressBar({ activities }: ProgressBarProps) {
         )}
         {percentage >= 40 && percentage < 70 && (
           <span className="text-yellow-600 font-semibold">
-            ⚡ Good progress! Don't stop now!
+            ⚡ Good progress! Don&apos;t stop now!
           </span>
         )}
         {percentage < 40 && percentage > 0 && (

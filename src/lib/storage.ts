@@ -1,4 +1,4 @@
-import { TodoData, DailyGoal } from "./types";
+import { TodoData, DailyGoal, MainActivity, SubActivity } from "./types";
 
 const STORAGE_KEY = "dailyTodos";
 
@@ -26,10 +26,10 @@ export const TodoStorage = {
                   ...parsed.currentGoal,
                   createdAt: new Date(parsed.currentGoal.createdAt),
                   activities: parsed.currentGoal.activities.map(
-                    (activity: any) => ({
+                    (activity: MainActivity) => ({
                       ...activity,
                       createdAt: new Date(activity.createdAt),
-                      subActivities: activity.subActivities.map((sub: any) => ({
+                      subActivities: activity.subActivities.map((sub: SubActivity) => ({
                         ...sub,
                         createdAt: new Date(sub.createdAt),
                       })),
@@ -37,13 +37,13 @@ export const TodoStorage = {
                   ),
                 }
               : null,
-            history: parsed.history.map((goal: any) => ({
+            history: parsed.history.map((goal: DailyGoal) => ({
               ...goal,
               createdAt: new Date(goal.createdAt),
-              activities: goal.activities.map((activity: any) => ({
+              activities: goal.activities.map((activity: MainActivity) => ({
                 ...activity,
                 createdAt: new Date(activity.createdAt),
-                subActivities: activity.subActivities.map((sub: any) => ({
+                subActivities: activity.subActivities.map((sub: SubActivity) => ({
                   ...sub,
                   createdAt: new Date(sub.createdAt),
                 })),

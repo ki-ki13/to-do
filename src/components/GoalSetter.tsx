@@ -56,7 +56,7 @@ export default function GoalSetter({
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              Today's Goal: {currentGoal.title}
+              Today&apos;s Goal: {currentGoal.title}
             </h2>
             {currentGoal.description && (
               <p className="text-gray-600">{currentGoal.description}</p>
@@ -79,7 +79,7 @@ export default function GoalSetter({
   return (
     <div className="bg-white rounded-lg p-6 mb-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
-        {currentGoal ? "Edit Today's Goal" : "Set Today's Goal"}
+        {currentGoal ? "Edit Today&apos;s Goal" : "Set Todays Goal"}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">

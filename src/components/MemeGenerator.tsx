@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { DailyGoal } from "@/lib/types";
+import { DailyGoal, MemeData } from "@/lib/types";
 import { AIMemeGenerator } from "@/lib/memeAIGenerator";
 import { calculateProgress } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ interface MemeGeneratorProps {
 interface MemeResult {
   imageUrl?: string;
   canvas?: HTMLCanvasElement;
-  memeData: any;
+  memeData: MemeData;
   method: string;
 }
 
@@ -48,14 +48,14 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
         imageUrl: result.imageUrl,
         canvas: result.canvas,
         memeData: result.memeData,
-        method: result.canvas ? 'canvas' : 'imgflip'
+        method: result.canvas ? "canvas" : "imgflip"
       };
       
       setMemeResult(memeResult);
       
     } catch (error: any) {
-      console.error('Error generating meme:', error);
-      setError(error.message || 'Failed to generate meme. Please try again.');
+      console.error("Error generating meme:", error);
+      setError(error.message || "Failed to generate meme. Please try again.");
     } finally {
       setIsGenerating(false);
     }
@@ -89,7 +89,7 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
         } else if (canvasRef.current) {
           canvasRef.current.toBlob(async (blob) => {
             if (blob) {
-              const file = new File([blob], 'meme.png', { type: 'image/png' });
+              const file = new File([blob], "meme.png", { type: "image/png" });
               await navigator.share({
                 files: [file],
                 title: `My Daily Progress - ${goal.title}`,
@@ -99,7 +99,7 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
           });
         }
       } catch (error) {
-        console.error('Error sharing meme:', error);
+        console.error("Error sharing meme:", error);
         downloadMeme(); // Fallback to download
       }
     } else {
@@ -117,7 +117,7 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
       <div className="mb-4">
         <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
           <strong>🎪 Varied Meme Generation:</strong> Our AI automatically picks the best method for maximum variety! 
-          You'll get different meme styles each time - canvas art, popular templates, or AI-generated content.
+          You&apos;ll get different meme styles each time - canvas art, popular templates, or AI-generated content.
         </p>
       </div>
       
@@ -157,7 +157,7 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
                   src={memeResult.imageUrl}
                   alt="Generated meme"
                   className="max-w-full h-auto border border-gray-300 rounded-lg shadow-sm mx-auto"
-                  style={{ maxHeight: '500px' }}
+                  style={{ maxHeight: "500px" }}
                 />
               ) : (
                 <canvas
@@ -234,7 +234,7 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
                 <p className="text-sm font-medium">Generation Error</p>
                 <p className="text-sm mt-1">{error}</p>
                 <p className="text-xs mt-2 text-red-600">
-                  💡 Don't worry! The system has multiple fallbacks - try again!
+                  💡 Don&apos;t worry! The system has multiple fallbacks - try again!
                 </p>
               </div>
             </div>
@@ -278,26 +278,26 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
             </div>
             <div className={`p-3 rounded-lg ${
               completedTasks === totalTasks 
-                ? 'bg-green-50' 
+                ? "bg-green-50" 
                 : completedTasks >= totalTasks * 0.7 
-                ? 'bg-yellow-50' 
-                : 'bg-red-50'
+                ? "bg-yellow-50" 
+                : "bg-red-50"
             }`}>
               <div className={`text-2xl font-bold ${
                 completedTasks === totalTasks 
-                  ? 'text-green-600' 
+                  ? "text-green-600" 
                   : completedTasks >= totalTasks * 0.7 
-                  ? 'text-yellow-600' 
-                  : 'text-red-600'
+                  ? "text-yellow-600" 
+                  : "text-red-600"
               }`}>
                 {Math.round((completedTasks / totalTasks) * 100)}%
               </div>
               <div className={`text-xs ${
                 completedTasks === totalTasks 
-                  ? 'text-green-800' 
+                  ? "text-green-800" 
                   : completedTasks >= totalTasks * 0.7 
-                  ? 'text-yellow-800' 
-                  : 'text-red-800'
+                  ? "text-yellow-800" 
+                  : "text-red-800"
               }`}>
                 Success Rate
               </div>
@@ -309,15 +309,15 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
             <div
               className={`h-3 rounded-full transition-all duration-1000 ease-out ${
                 completedTasks === totalTasks
-                  ? 'bg-gradient-to-r from-green-400 to-green-600'
+                  ? "bg-gradient-to-r from-green-400 to-green-600"
                   : completedTasks >= totalTasks * 0.7
-                  ? 'bg-gradient-to-r from-yellow-400 to-yellow-600'
-                  : 'bg-gradient-to-r from-red-400 to-red-600'
+                  ? "bg-gradient-to-r from-yellow-400 to-yellow-600"
+                  : "bg-gradient-to-r from-red-400 to-red-600"
               }`}
               style={{ 
                 width: `${(completedTasks / totalTasks) * 100}%`,
                 transform: `translateX(0)`,
-                animation: 'slideIn 1s ease-out'
+                animation: "slideIn 1s ease-out"
               }}
             />
           </div>
@@ -326,16 +326,16 @@ export default function MemeGenerator({ goal }: MemeGeneratorProps) {
           <div className="mt-3 text-center">
             <p className={`text-sm font-medium ${
               completedTasks === totalTasks
-                ? 'text-green-600'
+                ? "text-green-600"
                 : completedTasks >= totalTasks * 0.7
-                ? 'text-yellow-600'
-                : 'text-red-600'
+                ? "text-yellow-600"
+                : "text-red-600"
             }`}>
               {completedTasks === totalTasks
-                ? '🎉 Perfect score! You\'re crushing it!'
+                ? "🎉 Perfect score! You&apos;re crushing it!"
                 : completedTasks >= totalTasks * 0.7
-                ? '💪 Great progress! Almost there!'
-                : '🚀 Room for improvement - you got this tomorrow!'}
+                ? "💪 Great progress! Almost there!"
+                : "🚀 Room for improvement - you got this tomorrow!"}
             </p>
           </div>
         </div>

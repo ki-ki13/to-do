@@ -4,7 +4,7 @@ import GoalSetter from "@/components/GoalSetter";
 import ActivityList from "@/components/ActivityList";
 import ProgressBar from "@/components/ProgressBar";
 import MemeGenerator from "@/components/MemeGenerator";
-import { DailyGoal, TodoData } from "@/lib/types";
+import { DailyGoal, MainActivity, TodoData } from "@/lib/types";
 import { TodoStorage } from "@/lib/storage";
 import { formatDate } from "@/lib/utils";
 
@@ -51,7 +51,7 @@ export default function HomePage() {
     }));
   };
 
-  const handleActivitiesChange = (activities: any[]) => {
+  const handleActivitiesChange = (activities: MainActivity[]) => {
     if (!todoData.currentGoal) return;
 
     const updatedGoal = {
