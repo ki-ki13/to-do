@@ -31,5 +31,6 @@ export interface TodoData {
 export interface MemeData {
   text: string;
   template: string;
-  type: 'roast' | 'praise';
+  type: 'praise' | 'roast';
+  isAIGenerated?: boolean;
 }
